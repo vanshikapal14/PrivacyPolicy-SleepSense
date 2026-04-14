@@ -6,8 +6,26 @@
 document.addEventListener('DOMContentLoaded', () => {
     createStars();
     setupScrollAnimations();
+    setupNavbar();
     setupTOC();
 });
+
+// --- Navbar glassy transition ---
+function setupNavbar() {
+    const navbar = document.querySelector('.nav-bar');
+    if (!navbar) return;
+
+    const handleScroll = () => {
+        if (window.scrollY > 40) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+}
 
 // --- Generate twinkling star particles ---
 function createStars() {
